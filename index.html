@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Игра с курсором</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  .heart {
+    display: none;
+    position: absolute;
+    width: 1200px;
+    height: 1000px;
+    background-image: url('image.png'); /* Замените 'heart.png' на путь к вашему изображению сердечка */
+    background-size: cover;
+    pointer-events: none;
+  }
+  .image {
+    position: absolute;
+    width: 120px;
+    height: 100px;
+    background-image: url('photo.jpg'); /* Замените 'photo.png' на путь к вашему изображению */
+    background-size: cover;
+  }
+</style>
+</head>
+<body>
+
+<div class="heart"></div>
+<div class="image"></div>
+
+<script>
+  const image = document.querySelector('.image');
+  const heart = document.querySelector('.heart');
+  const maxX = window.innerWidth - 100;
+  const maxY = window.innerHeight - 100;
+  let clickCount = 0;
+
+  function moveImage() {
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+    image.style.left = newX + 'px';
+    image.style.top = newY + 'px';
+  }
+
+  function catchImage() {
+    clickCount++;
+    moveImage();
+    if (clickCount >= 5) {
+      heart.style.display = 'block';
+      image.style.display = 'none';
+    }
+  }
+
+  image.addEventListener('click', catchImage);
+  moveImage(); // Переместить изображение в начале игры
+</script>
+
+</body>
+</html>
