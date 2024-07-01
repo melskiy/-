@@ -1,62 +1,33 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Игра с курсором</title>
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
-  .heart {
-    display: none;
-    position: absolute;
-    width: 1200px;
-    height: 1000px;
-    background-image: url('image.png'); /* Замените 'heart.png' на путь к вашему изображению сердечка */
-    background-size: cover;
-    pointer-events: none;
-  }
-  .image {
-    position: absolute;
-    width: 120px;
-    height: 100px;
-    background-image: url('photo.jpg'); /* Замените 'photo.png' на путь к вашему изображению */
-    background-size: cover;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструменты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .question-container {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 45%;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
-<div class="heart"></div>
-<div class="image"></div>
-
-<script>
-  const image = document.querySelector('.image');
-  const heart = document.querySelector('.heart');
-  const maxX = window.innerWidth - 100;
-  const maxY = window.innerHeight - 100;
-  let clickCount = 0;
-
-  function moveImage() {
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
-    image.style.left = newX + 'px';
-    image.style.top = newY + 'px';
-  }
-
-  function catchImage() {
-    clickCount++;
-    moveImage();
-    if (clickCount >= 5) {
-      heart.style.display = 'block';
-      image.style.display = 'none';
-    }
-  }
-
-  image.addEventListener('click', catchImage);
-  moveImage(); // Переместить изображение в начале игры
-</script>
+    <script src='script.js'></script>
+    <h1>Что ты блин выберешь?</h1>
+    <p id = "name"></p>
+    <div class="question-container" id="question-container">
+        <img id="photo1" src="" alt="Фотография 1" onclick="checkAnswer(0)">
+        <img id="photo2" src="" alt="Фотография 2" onclick="checkAnswer(1)">
+    </div>
 
 </body>
 </html>
